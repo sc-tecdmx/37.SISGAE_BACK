@@ -126,4 +126,26 @@ class ApiController extends Controller
             ], 404);
         }
     }
+
+    public function showByWhere(string $field, string $value)
+    {
+        error_log('::ApiController.showByWhere ----------' . $this->db_model) ;
+        try {
+            $_db_model = $this->db_model::where( $field, $value )->get();
+
+            return response()->json(
+                [   'status' => "success",
+                    'message' => 'Solicitud exitosa',
+                    'data' => $_db_model
+                ], 200);
+
+        } catch (QueryException $ex) {
+            error_log ("ERR!  show ::" .$ex->getMessage() );
+            return response()->json([
+                'status' => "Error",
+                'message' => 'Error al consultar el Registro: /' . $field . '/' .$value ,
+                'exception' => $ex->getMessage()
+            ], 400);
+        }
+    }
 }

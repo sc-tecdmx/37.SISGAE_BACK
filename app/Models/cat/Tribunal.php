@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\medioimpugnacion\cat;
+namespace App\Models\cat;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
